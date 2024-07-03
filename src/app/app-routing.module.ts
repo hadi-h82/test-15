@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { authGuard } from './moduls/auth/auth.guard';
 
 const routes: Routes = [
 
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'panel', 
-    loadChildren: () => import('./moduls/panel/panel.module').then(m => m.PanelModule)
+    loadChildren: () => import('./moduls/panel/panel.module').then(m => m.PanelModule),
+    canMatch: [authGuard]
   },
   {
     path: 'user', 
@@ -32,5 +34,5 @@ export class AppRoutingModule { }
 
 
 
-//ng g module home --routing//
+//ng g module auth --routing//
 //ng g c home //
